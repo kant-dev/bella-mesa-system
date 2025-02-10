@@ -1,0 +1,48 @@
+// import { type NextRequest, type MiddlewareConfig, NextResponse } from "next/server";
+
+// const publicRoutes = [ 
+//   { path: '/signin', whenAuth: 'redirect' }, 
+//   { path: '/register', whenAuth: 'redirect' }, 
+//   { path: '/menu', whenAuth: 'next' } 
+// ] as const;
+
+// const REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE = '/signin';
+
+// export function middleware(req: NextRequest) {
+//   const path = req.nextUrl.pathname;
+//   const publicRoute = publicRoutes.find(route => route.path === path);
+//   const authToken = req.cookies.get('authToken');
+
+//   // Se não está autenticado e a rota é pública, pode acessar
+//   if (!authToken && publicRoute) {
+//     return NextResponse.next();
+//   }
+
+//   // Se não está autenticado e a rota é privada, redireciona para login
+//   if (!authToken && !publicRoute) {
+//     const redirectUrl = req.nextUrl.clone();
+//     redirectUrl.pathname = REDIRECT_WHEN_NOT_AUTHENTICATED_ROUTE;
+//     return NextResponse.redirect(redirectUrl);
+//   }
+
+//   // Se está autenticado e tenta acessar login ou cadastro, redireciona para home
+//   if (authToken && publicRoute && publicRoute.whenAuth === 'redirect') {
+//     const redirectUrl = req.nextUrl.clone();
+//     redirectUrl.pathname = '/';
+//     return NextResponse.redirect(redirectUrl);
+//   }
+
+//   return NextResponse.next();
+// }
+
+// export const config: MiddlewareConfig = {
+//   matcher: [
+//     /*
+//      * Match all request paths except for:
+//      * - API routes
+//      * - Static files (_next/static, _next/image)
+//      * - Public metadata files (favicon, sitemap, robots.txt)
+//      */
+//     '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)',
+//   ],
+// };
